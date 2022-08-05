@@ -1,26 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View , Pressable,Button } from 'react-native';
 
 export default function App() {
-  const [counter, setCounter] = useState(0)
-  useEffect(() => {
-    alert("mouted")
-    const timerID = setInterval(() => {
-      setCounter(counter=>counter+1);
-    }, 1000);
-  
-    return () => {
-      alert("unmounted")
-      clearInterval(timerID);
-    }
-  }, [])
-  
-  
   return (
     <View style={styles.container}>
-      <Text>{counter}</Text>
-      <StatusBar style="auto" />
+      <Text>Open up App.js teo start working on your app!</Text>
+      <Pressable style={{backgroundColor:"red"}} android_ripple={{ color: 'cyan' }}><Text style={{fontSize:16,padding:5}}>Button</Text></Pressable>
+      <Button title='hellow'/>
     </View>
   );
 }
