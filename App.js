@@ -3,10 +3,10 @@ import { StyleSheet, Text , TextInput, Vibration, View , Pressable,Button } from
 
 export default function App() {
   return (
-    <View>
-      <View>
-        <TextInput placeholder='enter your goal...'/>
-        <Button title='add'/>
+    <View style={styles.appContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.textInput} placeholder='enter your goal...'/>
+        <Button title='add goal'/>
       </View>
       <View>
         <Text>List of goals....</Text>
@@ -16,4 +16,18 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  appContainer:{
+    padding:50
+  },
+  inputContainer:{
+    flexDirection:'row',
+    justifyContent:"space-between"
+  },
+  textInput:{
+    borderWidth:1,
+    borderColor:"#cccccc",
+    width:"80%",
+    marginRight:8,
+    paddingHorizontal:8
+  }
 });
