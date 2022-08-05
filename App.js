@@ -4,9 +4,9 @@ import { StyleSheet, Text, View , Pressable,Button } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js teo start working on your app!</Text>
-      <Pressable style={{backgroundColor:"red"}} android_ripple={{ color: 'cyan' }}><Text style={{fontSize:16,padding:5}}>Button</Text></Pressable>
-      <Button title='hellow'/>
+      <Text style={{borderWidth:2 , borderColor:"red" , padding:16}}>Open up App.js teo start working on your app!</Text>
+      <Pressable style={styles.button} android_ripple={{ color: 'cyan' }}><Text style={{fontSize:16,padding:5}}>Button</Text></Pressable>
+      <Button title='hellow' style={styles.button}  color="#f194ff"/>
     </View>
   );
 }
@@ -18,4 +18,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  button:{
+    borderColor: 'red',
+    borderWidth: 10,
+    borderRadius: 15 ,
+    width:100,
+    padding:10
+  }
 });
