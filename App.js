@@ -1,33 +1,99 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text , TextInput, Vibration, View , Pressable,Button } from 'react-native';
-
+import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Button,
+  ToastAndroid,
+  Alert,
+  FlatList,
+  ScrollView,
+} from "react-native";
 export default function App() {
+  const [goals, setGoals] = useState([]);
+  const [input, setInput] = useState("");
+
+  const showToast = () => {
+    ToastAndroid.show("Task Added..", ToastAndroid.LONG);
+  };
+
+  const showAlert = (data) => {
+    Alert.alert("Message", data);
+  };
+  const addGoal = () => {
+    setGoals((prev) => [...prev, input]);
+    showToast();
+  };
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder='enter your goal...'/>
-        <Button title='add goal'/>
+        <TextInput
+          style={styles.textInput}
+          value={input}
+          onChangeText={(text) => setInput(text)}
+          placeholder="enter your goal..."
+        />
+        <Button color="red" title="add goal" onPress={addGoal} />
       </View>
-      <View>
-        <Text>List of goals....</Text>
+      <View style={styles.goalsContainer}>
+        <ScrollView>
+          {/* <Text>List of goals....</Text> */}
+          {goals.map((goal, index) => (
+            <Text
+              onPress={() => {
+                showAlert(task);
+              }}
+              style={styles.goalItem}
+              key={index}
+            >
+              {goal}
+            </Text>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  appContainer:{
-    padding:50
+  appContainer: {
+    paddingTop: 50,
+    paddingHorizontal: 16,
+    flex: 1,
   },
-  inputContainer:{
-    flexDirection:'row',
-    justifyContent:"space-between"
+  inputContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc",
   },
-  textInput:{
-    borderWidth:1,
-    borderColor:"#cccccc",
-    width:"80%",
-    marginRight:8,
-    paddingHorizontal:8
-  }
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#cccccc",
+    width: "70%",
+    marginRight: 8,
+    padding: 8,
+  },
+  goalsContainer: {
+    flex: 10,
+  },
+  goalItem: {
+    padding: 5,
+    margin: 4,
+    borderRadius: 3,
+    backgroundColor: "#add",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
 });
