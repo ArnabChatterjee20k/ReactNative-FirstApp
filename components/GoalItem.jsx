@@ -1,17 +1,20 @@
-import { Text , Alert} from "react-native";
+import { Text , Alert , Pressable} from "react-native";
+import { useGoalContext } from "../context/GoalContext";
+
 import styles from "../styles/style";
-export default function GoalItem({goal}) {
+export default function GoalItem({goal,id}) {
+  const {setGoals} = useGoalContext()
   const showAlert = (data) => {
-    Alert.alert("Message", data);
+    Alert.alert(`ALert!`, `${data} is deleted`);
+    setGoals(prev=>prev.filter((e,i)=>i!==id))
   };
   return (
-    <Text
-      onPress={() => {
-        showAlert(goal);
-      }}
-      style={styles.goalItem}
-    >
-      {goal}
-    </Text>
+    <Pressable onPress={()=>showAlert(goal)}>
+      <Text
+        style={styles.goalItem}
+      >
+        {goal}
+      </Text>
+    </Pressable>
   );
 }
