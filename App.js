@@ -38,20 +38,23 @@ export default function App() {
         <Button color="red" title="add goal" onPress={addGoal} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {/* <Text>List of goals....</Text> */}
-          {goals.map((goal, index) => (
-            <Text
-              onPress={() => {
-                showAlert(task);
-              }}
-              style={styles.goalItem}
-              key={index}
-            >
-              {goal}
-            </Text>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={goals}
+          renderItem={(itemData) => {
+            const { index, item: goal } = itemData;
+            return (
+              <Text
+                onPress={() => {
+                  showAlert(goal);
+                }}
+                style={styles.goalItem}
+              >
+                {goal}
+              </Text>
+            );
+          }}
+          keyExtractor={(goals,index)=>{return index}}
+        ></FlatList>
       </View>
     </View>
   );
