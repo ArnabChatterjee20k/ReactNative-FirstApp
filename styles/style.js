@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
       flex: 10,
     },
     goalItem: {
-      padding: 5,
+      padding: 10,
       margin: 4,
       borderRadius: 3,
+      fontSize:20,
       backgroundColor: "#add",
       shadowOffset: {
         width: 0,
