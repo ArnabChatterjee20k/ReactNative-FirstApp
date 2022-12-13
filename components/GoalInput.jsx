@@ -1,10 +1,10 @@
-import { TextInput, View, Button, ToastAndroid } from "react-native";
+import { ToastAndroid } from "react-native";
+import { AddIcon, HStack, IconButton } from "native-base";
 import { useGoalContext } from "../context/GoalContext";
-import styles from "../styles/style";
 
 export default function GoalInput() {
-    const {setInput,input,setGoals} = useGoalContext();
-    const showToast = () => {
+  const { setInput, input, setGoals } = useGoalContext();
+  const showToast = () => {
     ToastAndroid.show("Task Added..", ToastAndroid.LONG);
   };
 
@@ -13,14 +13,23 @@ export default function GoalInput() {
     showToast();
   };
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        value={input}
-        onChangeText={(text) => setInput(text)}
-        placeholder="enter your goal..."
+    <HStack
+      justifyContent="flex-end"
+      position="absolute"
+      bottom="0"
+      right="0"
+      width="100%"
+      padding="6"
+      zIndex={1}
+    >
+      <IconButton
+        onPress={() => addGoal()}
+        rounded="full"
+        variant="solid"
+        colorScheme="success"
+        shadow="7"
+        icon={<AddIcon size="7" mt="0.5" color="white" />}
       />
-      <Button color="red" title="add goal" onPress={addGoal} />
-    </View>
+    </HStack>
   );
 }
