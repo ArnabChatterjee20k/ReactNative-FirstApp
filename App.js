@@ -5,16 +5,21 @@ import GoalContext from "./context/GoalContext";
 import { View } from "react-native";
 import styles from "./styles/style";
 import { NativeBaseProvider } from "native-base";
+import ModalContextProvider from "./context/ModalContextProvider";
+import ModalForm from "./components/ModalForm";
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <GoalContext>
-        <View style={styles.appContainer}>
-          <GoalInput/>
-          <GoalContainer/>
-        </View>
-      </GoalContext>
+      <ModalContextProvider>
+        <GoalContext>
+          <View style={styles.appContainer}>
+            <ModalForm/>
+            <GoalInput />
+            <GoalContainer />
+          </View>
+        </GoalContext>
+      </ModalContextProvider>
     </NativeBaseProvider>
   );
 }
