@@ -12,7 +12,8 @@ export default function GoalContainer() {
           data={goals}
           renderItem={(itemData) => {
             const { index, item: goal } = itemData;
-            return <GoalItem goal={goal} id={index}/>
+            const {title,description} = goal
+            return <GoalItem goal={goal} id={index} title={title} description={description}/>
           }}
           keyExtractor={(goals,index)=>{return index}}
         ></FlatList>

@@ -5,16 +5,11 @@ import { useModalContext } from "../context/ModalContextProvider";
 
 export default function GoalInput() {
   const { setInput, input, setGoals } = useGoalContext();
-  const {toggleModal} = useModalContext()
+  const { toggleModal } = useModalContext();
   const showToast = () => {
     ToastAndroid.show("Task Added..", ToastAndroid.LONG);
   };
 
-  const addGoal = () => {
-    // setGoals((prev) => [...prev, input]);
-    toggleModal()
-    // showToast();
-  };
   return (
     <HStack
       justifyContent="flex-end"
@@ -26,7 +21,7 @@ export default function GoalInput() {
       zIndex={1}
     >
       <IconButton
-        onPress={() => addGoal()}
+        onPress={toggleModal}
         rounded="full"
         variant="solid"
         colorScheme="success"
